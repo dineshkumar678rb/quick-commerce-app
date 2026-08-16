@@ -2,8 +2,11 @@ import datetime
 import streamlit as st
 from utils.data import PRODUCTS, get_product_by_id, DARK_STORE
 from utils.cart import init_state, set_quantity, remove_from_cart, clear_cart, cart_total
+from utils.auth import require_login, render_account_sidebar
 
 st.set_page_config(page_title="Cart | QuickCart", page_icon="🛒", layout="wide")
+require_login()
+render_account_sidebar()
 init_state()
 
 st.title("🛒 Your Cart")

@@ -1,8 +1,11 @@
 import streamlit as st
 from utils.data import PRODUCTS, CATEGORIES
 from utils.cart import init_state, add_to_cart, cart_item_count
+from utils.auth import require_login, render_account_sidebar
 
 st.set_page_config(page_title="Browse Products | QuickCart", page_icon="🛍️", layout="wide")
+require_login()
+render_account_sidebar()
 init_state()
 
 st.title("🛍️ Browse Products")

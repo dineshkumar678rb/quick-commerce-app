@@ -1,7 +1,10 @@
 import streamlit as st
 from utils.cart import init_state
+from utils.auth import require_login, render_account_sidebar
 
 st.set_page_config(page_title="Orders | QuickCart", page_icon="📦", layout="wide")
+require_login()
+render_account_sidebar()
 init_state()
 
 st.title("📦 Your Orders")

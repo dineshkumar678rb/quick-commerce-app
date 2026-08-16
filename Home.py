@@ -1,9 +1,42 @@
 import streamlit as st
 from utils.data import DARK_STORE, CATEGORIES, PRODUCTS
 from utils.cart import init_state, cart_item_count
+from utils.auth import init_auth_state, attempt_login, login_as_guest, render_account_sidebar
 
 st.set_page_config(page_title="QuickCart", page_icon="🛒", layout="wide")
 init_state()
+init_auth_state()
+
+# ---- Login gate ----
+if not st.session_state.authenticated:
+    st.title("🛒 QuickCart")
+    st.caption("Log in to start shopping")
+
+    tab_login, tab_guest = st.tabs(["Login", "Quick Guest Access"])
+
+    with tab_login:
+        with st.form("login_form"):
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
+            submitted = st.form_submit_button("Log in", type="primary", use_container_width=True)
+            if submitted:
+                if attempt_login(username, password):
+                    st.success(f"Welcome, {username}!")
+                    st.rerun()
+                else:
+                    st.error("Invalid username or password.")
+        st.caption("Demo credentials: `demo` / `demo123`")
+
+    with tab_guest:
+        st.write("No account needed — jump straight into the demo.")
+        if st.button("Continue as Guest", use_container_width=True):
+            login_as_guest()
+            st.rerun()
+
+    st.stop()
+
+# ---- Logged-in sidebar ----
+render_account_sidebar()
 
 # ---- Header ----
 col1, col2 = st.columns([4, 1])
