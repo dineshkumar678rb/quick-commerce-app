@@ -50,3 +50,4 @@ quick-commerce-app/
 This is a **frontend-only** prototype — cart and order data reset when the session ends.
 A real version would persist products/orders in a database (e.g. SQLite/Postgres) and add
 auth, payments, and live delivery tracking.
+ 
