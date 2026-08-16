@@ -1,5 +1,9 @@
 # 🛒 QuickCart — Quick Commerce Frontend (Streamlit)
 
+🔗 **Live app:** [quick-commerce-app.streamlit.app](https://quick-commerce-app.streamlit.app/)
+
+A frontend-only Streamlit demo of a quick-commerce (10-15 min delivery) shopping app.
+
 A frontend-only Streamlit demo of a quick-commerce (10-15 min delivery) shopping app.
 Browse products by category, add items to a cart, place an order, and view order history —
 all in-memory for the session, no backend or database required.
